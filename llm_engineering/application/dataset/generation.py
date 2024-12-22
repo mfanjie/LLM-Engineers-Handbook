@@ -115,6 +115,7 @@ Provide your response in JSON format.
             assert settings.OPENAI_API_KEY is not None, "OpenAI API key must be set to generate datasets"
 
             llm = ChatOpenAI(
+                openai_api_base=settings.OPENAI_API_BASE,
                 model=settings.OPENAI_MODEL_ID,
                 api_key=settings.OPENAI_API_KEY,
                 max_tokens=2000 if cls.dataset_type == DatasetType.PREFERENCE else 1200,
