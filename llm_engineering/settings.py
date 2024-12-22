@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     # --- Required settings even when working locally. ---
 
     # OpenAI API
+    OPENAI_API_BASE: str = "https://api.302.ai/v1"
     OPENAI_MODEL_ID: str = "gpt-4o-mini"
     OPENAI_API_KEY: str | None = None
 
@@ -43,7 +44,7 @@ class Settings(BaseSettings):
     # --- Optional settings used to tweak the code. ---
 
     # AWS SageMaker
-    HF_MODEL_ID: str = "mlabonne/TwinLlama-3.1-8B-DPO"
+    HF_MODEL_ID: str = "jessemeng/TwinLlama-3.2-1B-DPO"
     GPU_INSTANCE_TYPE: str = "ml.g5.2xlarge"
     SM_NUM_GPUS: int = 1
     MAX_INPUT_LENGTH: int = 2048

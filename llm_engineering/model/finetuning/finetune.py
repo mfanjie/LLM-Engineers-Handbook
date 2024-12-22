@@ -223,7 +223,7 @@ def save_model(model: Any, tokenizer: Any, output_dir: str, push_to_hub: bool = 
         model.push_to_hub_merged(repo_id, tokenizer, save_method="merged_16bit")
 
 
-def check_if_huggingface_model_exists(model_id: str, default_value: str = "mlabonne/TwinLlama-3.1-8B") -> str:
+def check_if_huggingface_model_exists(model_id: str, default_value: str = "jessemeng/TwinLlama-3.2-1B") -> str:
     api = HfApi()
 
     try:
@@ -232,7 +232,7 @@ def check_if_huggingface_model_exists(model_id: str, default_value: str = "mlabo
         print(f"Model '{model_id}' does not exist.")  # noqa
         model_id = default_value
         print(f"Defaulting to '{model_id}'")  # noqa
-        print("Train your own 'TwinLlama-3.1-8B' to avoid this behavior.")  # noqa
+        print("Train your own 'TwinLlama-3.2-1B' to avoid this behavior.")  # noqa
 
     return model_id
 
@@ -274,7 +274,8 @@ if __name__ == "__main__":
 
     if args.finetuning_type == "sft":
         print("Starting SFT training...")  # noqa
-        base_model_name = "meta-llama/Llama-3.1-8B"
+        #base_model_name = "TinyLlama/TinyLlama_v1.1"
+        base_model_name = "meta-llama/Llama-3.2-1B"
         print(f"Training from base model '{base_model_name}'")  # noqa
 
         output_dir_sft = Path(args.model_dir) / "output_sft"
@@ -286,15 +287,16 @@ if __name__ == "__main__":
             num_train_epochs=args.num_train_epochs,
             per_device_train_batch_size=args.per_device_train_batch_size,
             learning_rate=args.learning_rate,
+            is_dummy=args.is_dummy,
         )
         inference(model, tokenizer)
 
-        sft_output_model_repo_id = f"{args.model_output_huggingface_workspace}/TwinLlama-3.1-8B"
+        sft_output_model_repo_id = f"{args.model_output_huggingface_workspace}/TwinLlama-3.2-1B"
         save_model(model, tokenizer, "model_sft", push_to_hub=True, repo_id=sft_output_model_repo_id)
     elif args.finetuning_type == "dpo":
         print("Starting DPO training...")  # noqa
 
-        sft_base_model_repo_id = f"{args.model_output_huggingface_workspace}/TwinLlama-3.1-8B"
+        sft_base_model_repo_id = f"{args.model_output_huggingface_workspace}/TwinLlama-3.2-1B"
         sft_base_model_repo_id = check_if_huggingface_model_exists(sft_base_model_repo_id)
         print(f"Training from base model '{sft_base_model_repo_id}'")  # noqa
 
@@ -311,5 +313,5 @@ if __name__ == "__main__":
         )
         inference(model, tokenizer)
 
-        dpo_output_model_repo_id = f"{args.model_output_huggingface_workspace}/TwinLlama-3.1-8B-DPO"
+        dpo_output_model_repo_id = f"{args.model_output_huggingface_workspace}/TwinLlama-3.2-1B-DPO"
         save_model(model, tokenizer, "model_dpo", push_to_hub=True, repo_id=dpo_output_model_repo_id)

@@ -146,7 +146,7 @@ env = { OBJC_DISABLE_INITIALIZE_FORK_SAFETY = "YES" }
 cmd = "poetry run zenml up"
 
 [[tool.poe.tasks.local-zenml-server-up.switch]]
-cmd = "poetry run zenml up"
+cmd = "poetry run zenml up --ip-address 0.0.0.0 --port 8237"
 
 # Tests
 [tool.poe.tasks.test]

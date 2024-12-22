@@ -197,10 +197,10 @@ def check_if_huggingface_dataset_exists(dataset_id: str, default_value: str) -> 
 
 model_ids = [
     check_if_huggingface_model_exists(
-        f"{MODEL_HUGGINGFACE_WORKSPACE}/TwinLlama-3.1-8B", default_value="mlabonne/TwinLlama-3.1-8B"
+        f"{MODEL_HUGGINGFACE_WORKSPACE}/TwinLlama-3.2-1B", default_value="jessemeng/TwinLlama-3.2-1B"
     ),
     check_if_huggingface_model_exists(
-        f"{MODEL_HUGGINGFACE_WORKSPACE}/TwinLlama-3.1-8B-DPO", default_value="mlabonne/TwinLlama-3.1-8B-DPO"
+        f"{MODEL_HUGGINGFACE_WORKSPACE}/TwinLlama-3.2-1B-DPO", default_value="jessemeng/TwinLlama-3.2-1B-DPO"
     ),
     "meta-llama/Llama-3.1-8B-Instruct",
 ]
