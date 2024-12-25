@@ -274,6 +274,7 @@ if __name__ == "__main__":
 
     if args.finetuning_type == "sft":
         print("Starting SFT training...")  # noqa
+        #base_model_name = "TinyLlama/TinyLlama_v1.1"
         base_model_name = "meta-llama/Llama-3.2-1B"
         print(f"Training from base model '{base_model_name}'")  # noqa
 

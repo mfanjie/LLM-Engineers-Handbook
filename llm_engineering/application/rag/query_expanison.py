@@ -19,7 +19,7 @@ class QueryExpansion(RAGStep):
 
         query_expansion_template = QueryExpansionTemplate()
         prompt = query_expansion_template.create_template(expand_to_n - 1)
-        model = ChatOpenAI(model=settings.OPENAI_MODEL_ID, api_key=settings.OPENAI_API_KEY, temperature=0)
+        model = ChatOpenAI(model=settings.OPENAI_MODEL_ID, api_key=settings.OPENAI_API_KEY, temperature=0,openai_api_base=settings.OPENAI_API_BASE)
 
         chain = prompt | model
 
