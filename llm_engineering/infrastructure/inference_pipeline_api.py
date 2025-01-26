@@ -35,16 +35,14 @@ def call_llm_service(query: str, context: str | None) -> str:
     try:
         logger.info("Loading tokenizer...")
         tokenizer = AutoTokenizer.from_pretrained(
-            model_id,
-            local_files_only=True
+            model_id
         )
   
         logger.info("Loading model...")
         model = AutoModelForCausalLM.from_pretrained(
             model_id,
             device_map="auto",
-            torch_dtype=torch.float16,
-            local_files_only=True
+            torch_dtype=torch.float16
         )
   
         logger.info("Preparing input...")
