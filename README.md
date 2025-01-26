@@ -21,7 +21,7 @@ The goal of this book is to create your own end-to-end LLM-based system using be
 - 🔍 Comprehensive monitoring
 - 🧪 Testing and evaluation framework
 
-You can download and use the final trained model on [Hugging Face](https://huggingface.co/mlabonne/TwinLlama-3.1-8B-DPO).
+You can download and use the final trained model on [Hugging Face](https://huggingface.co/jessemeng/TwinLlama-3.2-1B-DPO).
 
 > [!IMPORTANT]
 > The code in this GitHub repository is actively maintained and may contain updates not reflected in the book. **Always refer to this repository for the latest version of the code.**

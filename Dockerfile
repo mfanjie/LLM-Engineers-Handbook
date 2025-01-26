@@ -6,6 +6,9 @@ ENV PYTHONUNBUFFERED=1
 ENV POETRY_VERSION=1.8.3
 ENV DEBIAN_FRONTEND=noninteractive
 ENV POETRY_NO_INTERACTION=1
+ENV export SM_NUM_GPUS=1
+ENV export SM_MODEL_DIR=/root/handbook/models
+ENV export SM_OUTPUT_DATA_DIR=/root/handbook/output
 
 # Install Google Chrome
 RUN apt-get update -y && \
@@ -28,7 +31,8 @@ RUN apt-get update -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Poetry using pip and clear cache
-RUN pip install --no-cache-dir "poetry==$POETRY_VERSION"
+RUN pip install --no-cache-dir "poetry==$POETRY_VERSION" \
+    unsloth[cu124] comet-ml>=3.43.2
 RUN poetry config installer.max-workers 20
 
 WORKDIR $WORKSPACE_ROOT
